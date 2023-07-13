@@ -1,13 +1,27 @@
-name: Comment when opened
+name: simpled
+
+# Controles when the workflow will run 
 on:
-  issues:
-    types:
-      - opened
+  # push:
+  #   branches: [ main ]
+  # pull_request: 
+  #   branches: [ main ]
+  # issues:
+  #   types:
+  #     - opened
+  workflow_dispatch:
 jobs:
-  comment:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: 
+      - self-hosted
     steps:
-      - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: ${{ github.event.issue.html_url }}
+      - uses: actions/checkout@v2
+      - name: run a one-line script
+        run: |
+          echo Hello, World
+          sleep 15
+          echo Good bye
+
+      - name: run multi-line script
+        run: |
+          echo "${{github.workspace}}"
