@@ -19,9 +19,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: run a one-line script
         run: |
-          echo Hello, World
+          echo Heyyyy, Work flow is running , wait.......
           sleep 15
-          echo Good bye
+          echo workflow runned succcessfully
 
       - name: run multi-line script
         run: |
