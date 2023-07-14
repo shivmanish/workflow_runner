@@ -56,3 +56,8 @@ void startTimer() {
         },
     );
 }
+
+// run in init after build 
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollToIndex();
+    });
