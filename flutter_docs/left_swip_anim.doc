@@ -1,0 +1,58 @@
+final PageController _pageController = PageController();
+int _currentPageIndex = 0;
+
+Flexible(
+    child: Container(
+    height: 150,
+    child: PageView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        controller: _pageController,
+        itemCount: 2,
+        itemBuilder: (context, index) {
+        return index == 0 ? statusCard() : rewardCard();
+        },
+        onPageChanged: (index) {
+        setState(() {
+            _currentPageIndex = index;
+        });
+        },
+    ),
+    ),
+)
+
+onTap: () {
+    if (_currentPageIndex < 1) {
+        _pageController.nextPage(
+        duration: Duration(milliseconds: 500),
+        curve: Curves.ease,
+        );
+    }
+}
+
+
+int _currentCardIndex = 0;
+  late PageController _pageController;
+  Timer? _carouselTimer;
+  final Duration _carouselDuration = const Duration(seconds: 4);
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0, viewportFraction: .9);
+    // Start carousel timer
+    startTimer();
+  }
+void startTimer() {
+    _carouselTimer = Timer.periodic(
+        _carouselDuration,
+        (timer) {
+        _currentCardIndex += 1;
+        _currentCardIndex = _currentCardIndex % widget.titles.length;
+        _pageController.animateToPage(
+            _currentCardIndex,
+            duration: Duration(milliseconds: 1000),
+            curve: Curves.easeInOutCubic,
+        );
+        },
+    );
+}
