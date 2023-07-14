@@ -2,25 +2,26 @@ name: simpled
 
 # Controles when the workflow will run 
 on:
-  # push:
-  #   branches: [ main ]
+  push:
+    branches: [ main ]
   # pull_request: 
   #   branches: [ main ]
   # issues:
   #   types:
   #     - opened
-  workflow_dispatch:
+#   workflow_dispatch:
 jobs:
   build:
     runs-on: 
       - self-hosted
+      - lebel-1
     steps:
       - uses: actions/checkout@v2
       - name: run a one-line script
         run: |
-          echo Hello, World
+          echo Heyyyy, Work flow is running , wait.......
           sleep 15
-          echo Good bye
+          echo workflow runned succcessfully
 
       - name: run multi-line script
         run: |
